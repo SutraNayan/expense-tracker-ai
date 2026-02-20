@@ -16,7 +16,7 @@ export default function AddExpenseForm({ onAdd }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (!form.amount || isNaN(Number(form.amount))) return
+    if (form.amount === '' || isNaN(Number(form.amount))) return
     onAdd({
       id: crypto.randomUUID(),
       date: form.date,

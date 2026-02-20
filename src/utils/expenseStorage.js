@@ -10,5 +10,9 @@ export function loadExpenses() {
 }
 
 export function saveExpenses(expenses) {
-  localStorage.setItem(KEY, JSON.stringify(expenses))
+  try {
+    localStorage.setItem(KEY, JSON.stringify(expenses))
+  } catch {
+    console.warn('Could not save expenses to localStorage.')
+  }
 }
