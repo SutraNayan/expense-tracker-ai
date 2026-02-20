@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(printf:*)",
+      "Bash(npx create-vite@latest:*)",
+      "Bash(npx create-vite:*)"
+    ]
+  }
+}
