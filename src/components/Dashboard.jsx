@@ -1,15 +1,29 @@
+import { useState } from 'react'
 import AddExpenseForm from './AddExpenseForm'
-import { downloadExpensesCSV } from '../utils/csvExport'
+import ExportModal from './ExportModal'
 
 export default function Dashboard({ expenses, onAdd }) {
+  const [showExport, setShowExport] = useState(false)
+
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '24px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <h1 style={{ margin: 0 }}>Expense Tracker</h1>
-        <button onClick={() => downloadExpensesCSV(expenses)}>
-          Export Data
+        <button
+          onClick={() => setShowExport(true)}
+          style={{
+            padding: '9px 18px', fontSize: '14px', fontWeight: '600',
+            background: '#2563eb', color: '#fff', border: 'none',
+            borderRadius: '8px', cursor: 'pointer',
+          }}
+        >
+          ↓ Export Data
         </button>
       </div>
+
+      {showExport && (
+        <ExportModal expenses={expenses} onClose={() => setShowExport(false)} />
+      )}
 
       <AddExpenseForm onAdd={onAdd} />
 
