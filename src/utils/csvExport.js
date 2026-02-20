@@ -1,6 +1,6 @@
 function escapeField(value) {
   const str = String(value)
-  if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+  if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
     return '"' + str.replace(/"/g, '""') + '"'
   }
   return str
@@ -24,6 +24,8 @@ export function downloadExpensesCSV(expenses) {
   const a = document.createElement('a')
   a.href = url
   a.download = `expenses-${today}.csv`
+  document.body.appendChild(a)
   a.click()
-  URL.revokeObjectURL(url)
+  document.body.removeChild(a)
+  setTimeout(() => URL.revokeObjectURL(url), 0)
 }

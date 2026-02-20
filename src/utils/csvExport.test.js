@@ -30,4 +30,12 @@ describe('buildCsvString', () => {
     const result = buildCsvString(expenses)
     expect(result).toContain('"Say ""hello"""')
   })
+
+  it('wraps fields containing newlines in double quotes', () => {
+    const expenses = [
+      { date: '2026-02-20', category: 'Food', amount: 5, description: 'line1\nline2' }
+    ]
+    const result = buildCsvString(expenses)
+    expect(result).toContain('"line1\nline2"')
+  })
 })
